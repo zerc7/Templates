@@ -1,0 +1,92 @@
+\documentclass{article}
+\usepackage{listings}
+\usepackage{geometry}
+\geometry{left=2cm, right=2cm, top=1.8cm, bottom=1.8cm}
+
+\title{VSCode}
+\author{Zerc}
+\date{April 2025}
+
+\lstset{
+    basicstyle=\samll,
+    basicstyle=\tt,
+    breaklines=true,
+}
+
+
+
+\begin{document}
+
+\pagestyle{empty}
+\begin{center}
+    \Large\textbf{Concise configuration of VSCode for competition}
+\end{center}
+
+\hfill
+
+\framebox[\width]{\ tasks.json\ } (Optional) Replace \texttt{.exe} with \texttt{\$\{fileBasenameNoExtension\}}
+
+\begin{lstlisting}
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "cls; g++ '${file}' -std=c++14 -Wall -o .exe"
+        },
+        {
+            "label": "run",
+            "type": "shell",
+            "command": "cls; Get-Content ./sample.in | ./.exe > ./sample.out"
+        },
+        {
+            "label": "buildrun",
+            "type": "shell",
+            "command": "cls; g++ '${file}' -std=c++14 -Wall -o .exe; Get-Content ./sample.in | ./.exe > ./sample.out"
+        }
+    ]
+}
+\end{lstlisting}
+
+\framebox[\width]{\ keybindings.json\ } Ctrl+K Ctrl+S
+
+
+\begin{lstlisting}
+[
+    {
+        "key": "shift+numpad_add",
+        "command": "editor.action.fontZoomIn"
+    },
+    {
+        "key": "shift+numpad_subtract",
+        "command": "editor.action.fontZoomOut"
+    },
+    {
+        "key": "f9",
+        "command": "workbench.action.tasks.runTask",
+        "args": "build"
+    },
+    {
+        "key": "f10",
+        "command": "workbench.action.tasks.runTask",
+        "args": "run"
+    },
+    {
+        "key": "f11",
+        "command": "workbench.action.tasks.runTask",
+        "args": "buildrun"
+    }
+]
+\end{lstlisting}
+
+\framebox[\width]{\ settings.json\ } Auto Save
+
+
+\begin{lstlisting}
+{
+    "files.autoSave": "afterDelay"
+}
+\end{lstlisting}
+
+\end{document}
